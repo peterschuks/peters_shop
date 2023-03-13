@@ -55,19 +55,19 @@ class account(AbstractBaseUser):
     last_login      = models.DateTimeField(auto_now_add=True)
     is_admin        = models.BooleanField(default=False)
     is_staff        = models.BooleanField(default=False)
-    is_active       = models.BooleanField(default=False)
+    is_active       = models.BooleanField(default=True)
     is_superadmin   = models.BooleanField(default=False)
 
     #changing the login from username to email and setting up the required fields
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username','first_name', 'last_name', ] 
+    REQUIRED_FIELDS = ['username','first_name', 'last_name', '' ] 
 
     object = MyAccountManager()
 
     def __str__(self):
         return self.email
-    
+
     def has_perm(self, perm, obj=None):
         return self.is_admin
 
